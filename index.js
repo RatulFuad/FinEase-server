@@ -25,14 +25,18 @@ async function run() {
   try {
     await client.connect();
 
+    const db = client.db("FinEase-bd")
+    const FinEaseCollection = db.collection("FinEase")
+
 
     app.post("/FinEase", async (req, res) =>{
       const data = req.body
       console.log(data)
-      // const result = FinEaseCollection.insertOne()
+      const result = await FinEaseCollection.insertOne(data)
       res.send({
-        success: true
-      })  
+        success: true,
+        result
+      })   
     })
 
 
