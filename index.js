@@ -29,6 +29,12 @@ async function run() {
     const FinEaseCollection = db.collection("FinEase")
 
 
+    app.get("/FinEase", async (req, res)=>{
+      const result = await FinEaseCollection.find().toArray()
+      res.send(result)
+    })
+
+
     app.post("/FinEase", async (req, res) =>{
       const data = req.body
       console.log(data)
